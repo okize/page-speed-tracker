@@ -1,0 +1,22 @@
+{
+  "name": "page-speed-tracker",
+  "version": "0.0.0",
+  "private": true,
+  "description": "node app that tracks the page speed score of an array of urls over time",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/okize/page-speed-tracker"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/okize/page-speed-tracker/issues"
+  },
+  "homepage": "https://github.com/okize/page-speed-tracker"
+}

@@ -14,7 +14,9 @@ var saveResults = function (results) {
   var filename = 'data/' + 'pageSpeedScores_' + moment().format('YYYYMMDD') + '.json';
 
   fs.writeFile(filename, JSON.stringify(allScores, null, 2), function (err) {
-    if (err) throw err;
+    if (err) {
+      return err;
+    }
     console.log(filename + ' saved!');
   });
 

@@ -14,9 +14,13 @@ smtpTransport.sendMail({
   subject: 'Ping',
   text: 'Pong'
 }, function (err, res){
+
   if (err) {
-    console.log(err);
-  } else {
-    console.log('Message sent: ' + res.message);
+    return console.error(err);
   }
+
+  console.log('Message sent: ' + res.message);
+
+  smtpTransport.close();
+
 });

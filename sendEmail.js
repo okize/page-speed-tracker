@@ -6,8 +6,8 @@ var email = {
   service: 'Gmail',
   user: process.argv[4] || process.env['GMAIL_USER'],
   password: process.argv[5] || process.env['GMAIL_PASSWORD'],
-  from: process.argv[4] || process.env['GMAIL_FROM'],
-  to: process.argv[6] || process.env['GMAIL_TO'],
+  from: process.argv[6] || process.env['GMAIL_FROM'],
+  to: process.argv[7] || process.env['GMAIL_TO'],
   subject: process.argv[2] || '',
   text: process.argv[3] || ''
 };

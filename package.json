@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "description": "node app that tracks the page speed score of an array of urls over time",
-  "main": "index.js",
+  "main": "app.js",
   "dependencies": {
     "moment": "~2.5.0",
     "bluebird": "~1.0.0",

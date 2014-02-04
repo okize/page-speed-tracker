@@ -9,7 +9,10 @@
     "bluebird": "~1.0.0",
     "request": "~2.31.0",
     "nodemailer": "~0.6.0",
-    "underscore": "~1.5.2"
+    "underscore": "~1.5.2",
+    "optimist": "~0.6.0",
+    "nopt": "~2.1.2",
+    "cron": "~1.0.3"
   },
   "devDependencies": {},
   "scripts": {

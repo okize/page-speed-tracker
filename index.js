@@ -5,7 +5,7 @@ var path = require('path'),
 var email = require('./sendEmail.js');
 
 var job = new cronJob({
-  cronTime: '*/1 * * * *',
+  cronTime: '0 8 * * *',
   onTick: function() {
     email('email sent', 'email body');
   },
@@ -13,4 +13,4 @@ var job = new cronJob({
   timeZone: "America/New_York"
 });
 
-// job.start();
+job.start();

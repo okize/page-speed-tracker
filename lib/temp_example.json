@@ -1,0 +1,115 @@
+{
+  "timestamp": "2014-02-04T08:53:43-05:00",
+  "results": [
+    [
+      {
+        "url": "http://www.patientslikeme.com/",
+        "mobileScore": 71
+      },
+      {
+        "url": "http://www.patientslikeme.com/",
+        "desktopScore": 88
+      }
+    ],
+    [
+      {
+        "url": "http://www.patientslikeme.com/conditions",
+        "mobileScore": 69
+      },
+      {
+        "url": "http://www.patientslikeme.com/conditions",
+        "desktopScore": 88
+      }
+    ],
+    [
+      {
+        "url": "http://www.patientslikeme.com/conditions/1954-pulmonary-fibrosis",
+        "mobileScore": 67
+      },
+      {
+        "url": "http://www.patientslikeme.com/conditions/1954-pulmonary-fibrosis",
+        "desktopScore": 87
+      }
+    ],
+    [
+      {
+        "url": "http://www.patientslikeme.com/conditions/8-fibromyalgia",
+        "mobileScore": 69
+      },
+      {
+        "url": "http://www.patientslikeme.com/conditions/8-fibromyalgia",
+        "desktopScore": 85
+      }
+    ],
+    [
+      {
+        "url": "http://www.patientslikeme.com/join",
+        "mobileScore": 65
+      },
+      {
+        "url": "http://www.patientslikeme.com/join",
+        "desktopScore": 87
+      }
+    ],
+    [
+      {
+        "url": "http://www.patientslikeme.com/login",
+        "mobileScore": 66
+      },
+      {
+        "url": "http://www.patientslikeme.com/login",
+        "desktopScore": 87
+      }
+    ],
+    [
+      {
+        "url": "http://www.patientslikeme.com/patients",
+        "mobileScore": 67
+      },
+      {
+        "url": "http://www.patientslikeme.com/patients",
+        "desktopScore": 81
+      }
+    ],
+    [
+      {
+        "url": "http://www.patientslikeme.com/search",
+        "mobileScore": 67
+      },
+      {
+        "url": "http://www.patientslikeme.com/search",
+        "desktopScore": 86
+      }
+    ],
+    [
+      {
+        "url": "http://www.patientslikeme.com/symptoms",
+        "mobileScore": 69
+      },
+      {
+        "url": "http://www.patientslikeme.com/symptoms",
+        "desktopScore": 88
+      }
+    ],
+    [
+      {
+        "url": "http://www.patientslikeme.com/treatments",
+        "mobileScore": 69
+      },
+      {
+        "url": "http://www.patientslikeme.com/treatments",
+        "desktopScore": 88
+      }
+    ],
+    [
+      {
+        "url": "http://www.patientslikeme.com/user/signup",
+        "mobileScore": 65
+      },
+      {
+        "url": "http://www.patientslikeme.com/user/signup",
+        "desktopScore": 87
+      }
+    ]
+  ]
+}

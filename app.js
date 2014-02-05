@@ -7,11 +7,11 @@ var time = require('time');
 var email = require(path.join(__dirname, 'lib', 'sendEmail.js'));
 
 // urls to retreive page speed scores for
-var urls = require(path.join(__dirname, 'lib', 'urls.json'));
+// var urls = require(path.join(__dirname, 'lib', 'urls.json'));
 
 // sets up cron job for getting & saving page speed scores
 var job = new cronJob({
-  cronTime: '45 20 * * *',
+  cronTime: '50 20 * * *',
   // cronTime: '0 8 * * *',
   // cronTime: process.env['CRON_TIME'],
   onTick: function () {
@@ -23,7 +23,5 @@ var job = new cronJob({
 
 function getScores () {
   var data = require(path.join(__dirname, 'lib', 'temp_example.json'));
-  email('Page speed scores saved [form: ' + process.env['USER'] + ']', data);
+  email('Page speed scores saved [from: ' + process.env['USER'] + ']', data);
 }
-
-console.log(process.env);

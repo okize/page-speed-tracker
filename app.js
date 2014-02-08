@@ -1,8 +1,8 @@
 // modules
 var Promise = require('bluebird');
-var moment = require('moment');
 var path = require('path');
 var fs = require('fs');
+var moment = require('moment');
 var cronJob = require('cron').CronJob;
 var time = require('time');
 
@@ -11,12 +11,17 @@ var timerStart = new Date().getTime();
 
 // for sending notification emails
 var email = require(path.join(__dirname, 'lib', 'sendEmail.js'));
+var save = require(path.join(__dirname, 'lib', 'saveResults.js'));
+
+// filename to save
+var filename = 'pageSpeedScores_' + moment().format('YYYYMMDD') + '.json';
 
 // for requesting page speed scores
 var getScore = require(path.join(__dirname, 'lib', 'getScore.js'));
 
 // urls to retreive page speed scores for
-var urls = require('./lib/urls.json');
+// var urls = (fs.readFileSync(path.join(__dirname, 'lib', 'urls.txt'), 'utf8')).split(',');
+var urls = require(path.join(__dirname, 'lib', 'urls.json'));
 
 // google page speed insights api key
 var apiKey = process.env['PAGESPEED_API_KEY'];
@@ -52,6 +57,9 @@ function getScores () {
     );
 
   })).then(function (results) {
+
+    // temp
+    save(results, filename);
 
     var data = {
       timestamp: moment().format(),

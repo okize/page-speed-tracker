@@ -1,6 +1,7 @@
 node_modules/
+.env
+
 data/
 temp/
-.env
 urls.json
 urls.txt

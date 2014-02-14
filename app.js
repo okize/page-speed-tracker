@@ -12,6 +12,7 @@ var timerStart = new Date().getTime();
 // for sending notification emails
 var email = require(path.join(__dirname, 'lib', 'sendEmail.js'));
 var save = require(path.join(__dirname, 'lib', 'saveResults.js'));
+var send = require(path.join(__dirname, 'lib', 'sendResults.js'));
 
 // filename to save
 var filename = 'pageSpeedScores_' + moment().format('YYYYMMDD') + '.json';
@@ -54,7 +55,8 @@ var getScores = function () {
   }).then(function (results) {
 
     // temporary
-    save(results, filename);
+    send(results);
+    // save(results, filename);
 
     var timeCount = (new Date().getTime() - timerStart)/1000;
 
@@ -75,8 +77,7 @@ var getScores = function () {
 
 // sets up cron job for getting & saving page speed scores
 var job = new cronJob({
-  cronTime: '0 8 * * *',
-  // cronTime: process.env['CRON_TIME'],
+  cronTime: process.env['CRON_TIME'],
   onTick: function () {
     return getScores();
   },

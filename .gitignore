@@ -3,6 +3,5 @@ node_modules/
 
 data/
 temp/
-urls.json
 urls.txt
 temp_example.json

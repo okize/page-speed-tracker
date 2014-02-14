@@ -9,6 +9,9 @@ var time = require('time');
 // timer vars
 var timerStart = new Date().getTime();
 
+//  time to run app in cron format
+var timeToRun = '40 8 * * *';
+
 // for sending notification emails
 var email = require(path.join(__dirname, 'lib', 'sendEmail.js'));
 var save = require(path.join(__dirname, 'lib', 'saveResults.js'));
@@ -77,7 +80,7 @@ var getScores = function () {
 
 // sets up cron job for getting & saving page speed scores
 var job = new cronJob({
-  cronTime: process.env['CRON_TIME'],
+  cronTime: timeToRun,
   onTick: function () {
     return getScores();
   },

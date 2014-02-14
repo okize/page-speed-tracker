@@ -10,7 +10,7 @@ var time = require('time');
 var timerStart = new Date().getTime();
 
 //  time to run app in cron format
-var timeToRun = '0 10 * * *';
+var timeToRun = '0 11 * * *';
 
 // for sending notification emails
 var email = require(path.join(__dirname, 'lib', 'sendEmail.js'));
@@ -32,18 +32,59 @@ var apiKey = process.env['PAGESPEED_API_KEY'];
 // scoring strategies for page speed insights
 var strategies = ['mobile', 'desktop'];
 
+// urls to retreive page speed scores for
+var urls = require('./urls.json');
+
 // get all the pagespeed scores, save them & email them
-var getScores = function () {
+// var getScores = function () {
 
-  getUrls().then(function(rows) {
+//   getUrls().then(function(rows) {
 
-    var urls = [];
-    for (var i = 0, len = rows.length; i < len; i++) {
-      urls.push(rows[i].url);
-    }
-    return urls;
+//     var urls = [];
+//     for (var i = 0, len = rows.length; i < len; i++) {
+//       urls.push(rows[i].url);
+//     }
+//     return urls;
 
-  }).map(function (url) {
+//   }).map(function (url) {
+
+//     return Promise.all(
+//       strategies.map(function (strategy) {
+//         return getScore(url, strategy, apiKey).spread(function (res, body) {
+//           var score = {url: url};
+//           score[strategy + 'Score'] = JSON.parse(body).score;
+//           return score;
+//         });
+//       })
+//     );
+
+//   }).then(function (results) {
+
+//     // temporary
+//     save(results, filename);
+
+//     var timeCount = (new Date().getTime() - timerStart)/1000;
+
+//     var data = {
+//       timestamp: moment().format(),
+//       timer: timeCount,
+//       results: results
+//     };
+//     return email('Page speed scores saved', data);
+
+//   }).catch(function (err) {
+
+//     console.error('Error thrown: ' + err);
+
+//   });
+
+// };
+
+function getScores () {
+
+  // loop through URLs to be scored for each strategy
+  // then save the results to disk
+  Promise.all(urls.map(function (url) {
 
     return Promise.all(
       strategies.map(function (strategy) {
@@ -55,11 +96,10 @@ var getScores = function () {
       })
     );
 
-  }).then(function (results) {
+  })).then(function (results) {
 
     // temporary
     send(results);
-    // save(results, filename);
 
     var timeCount = (new Date().getTime() - timerStart)/1000;
 
@@ -72,11 +112,11 @@ var getScores = function () {
 
   }).catch(function (err) {
 
-    console.error('Error thrown: ' + err);
+    console.error('Error: ' + err);
 
   });
 
-};
+}
 
 // sets up cron job for getting & saving page speed scores
 var job = new cronJob({

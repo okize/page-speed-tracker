@@ -10,7 +10,7 @@ var time = require('time');
 var timerStart = new Date().getTime();
 
 //  time to run app in cron format
-var timeToRun = '0 11 * * *';
+var timeToRun = '11 11 * * *';
 
 // for sending notification emails
 var email = require(path.join(__dirname, 'lib', 'sendEmail.js'));

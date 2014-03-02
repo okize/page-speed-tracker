@@ -1,7 +1,7 @@
-node_modules/
 .env
 
 data/
 temp/
 urls.txt
+urls.json
 temp_example.json

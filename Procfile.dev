@@ -1,2 +1,2 @@
-web: nodemon app.js
+web: nodemon app_temp.js
 postgres: postgres -D /usr/local/var/postgres

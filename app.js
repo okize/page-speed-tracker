@@ -12,20 +12,17 @@ var time = require('time'); //required by cron
 //  time to run app in cron format
 var timeToRun = '0 8 * * *';
 
-// google page speed insights api key
-var apiKey = process.env['PAGESPEED_API_KEY'];
+// query db for list of urls to retreive page speed scores for
+var getUrls = require(path.join(__dirname, 'lib', 'getUrls.js'));
+
+// for requesting page speed scores
+var getScore = require(path.join(__dirname, 'lib', 'getScore.js'));
 
 // for sending notification emails
 var email = require(path.join(__dirname, 'lib', 'sendEmail.js'));
 
 // save the results to a json file locally
-var saveResultsToDisk = require(path.join(__dirname, 'lib', 'saveResultsToDisk.js'));
-
-// for requesting page speed scores
-var getScore = require(path.join(__dirname, 'lib', 'getScore.js'));
-
-// query db for list of urls to retreive page speed scores for
-var getUrls = require(path.join(__dirname, 'lib', 'getUrls.js'));
+var save = require(path.join(__dirname, 'lib', 'saveResults.js'));
 
 // scoring strategies for page speed insights
 var strategies = ['mobile', 'desktop'];
@@ -37,7 +34,7 @@ var getScores = function () {
 
     return Promise.all(
       strategies.map(function (strategy) {
-        return getScore(url, strategy, apiKey).spread(function (res, body) {
+        return getScore(url, strategy).spread(function (res, body) {
           var score = {url: url};
           score[strategy + 'Score'] = JSON.parse(body).score;
           return score;
@@ -47,8 +44,12 @@ var getScores = function () {
 
   }).then(function (results) {
 
-    var filename = 'pageSpeedScores_' + moment().format('YYYYMMDD') + '.json';
-    saveResultsToDisk(results, filename);
+    results.forEach( function (result) {
+      result.forEach( function(res) {
+        save(res);
+      });
+    });
+
     return results;
 
   }).then(function (results) {

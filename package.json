@@ -14,7 +14,8 @@
     "email-templates": "0.1.x",
     "sequelize": "1.7.x",
     "pg": "2.11.x",
-    "microtime": "0.5.x"
+    "microtime": "0.5.x",
+    "dbal": "^0.2.1"
   },
   "devDependencies": {},
   "scripts": {

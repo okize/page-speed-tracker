@@ -1,1 +1,1 @@
-web: node app_temp.js
+web: node app.js

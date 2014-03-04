@@ -38,6 +38,7 @@ var getScores = function () {
     return Promise.all(
       strategies.map(function (strategy) {
         return getScore(url, strategy).spread(function (res, body) {
+          console.log(body);
           var score = {url: url};
           score[strategy + 'Score'] = JSON.parse(body).score;
           return score;
@@ -58,8 +59,6 @@ var getScores = function () {
     return results;
 
   }).then(function (results) {
-
-    console.log(results);
 
     // var timeCount = (new Date().getTime() - timerStart)/1000;
 
@@ -88,6 +87,4 @@ var job = new cronJob({
   timeZone: 'America/New_York'
 });
 
-console.log(process.env['PAGESPEED_API_KEY']);
-
-// getScores();
+getScores();

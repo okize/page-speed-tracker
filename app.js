@@ -43,7 +43,7 @@ var getScores = function () {
         return getScore(url, strategy).spread(function (res, body) {
           data = JSON.parse(body);
           if (data.error) {
-            throw new Error(data.message);
+            throw new Error(data.error.message);
           }
           score = {url: url};
           score[strategy + 'Score'] = data.score;

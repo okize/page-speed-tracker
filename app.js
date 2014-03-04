@@ -54,6 +54,8 @@ var getScores = function () {
 
   }).then(function (results) {
 
+    console.log(results);
+
     // results.forEach( function (result) {
     //   result.forEach( function(res) {
     //     save(res);

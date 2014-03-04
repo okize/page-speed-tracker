@@ -24,6 +24,9 @@ var email = require(path.join(__dirname, 'lib', 'sendEmail.js'));
 // save the results to a json file locally
 var save = require(path.join(__dirname, 'lib', 'saveResults.js'));
 
+// save the results to a json file locally
+// var saveResultsToDisk = require(path.join(__dirname, 'lib', 'saveResultsToDisk.js'));
+
 // scoring strategies for page speed insights
 var strategies = ['mobile', 'desktop'];
 
@@ -44,24 +47,28 @@ var getScores = function () {
 
   }).then(function (results) {
 
-    results.forEach( function (result) {
-      result.forEach( function(res) {
-        save(res);
-      });
-    });
+    // results.forEach( function (result) {
+    //   result.forEach( function(res) {
+    //     save(res);
+    //   });
+    // });
+
+    // saveResultsToDisk(results);
 
     return results;
 
   }).then(function (results) {
 
-    var timeCount = (new Date().getTime() - timerStart)/1000;
+    console.log(results);
 
-    var data = {
-      timestamp: moment().format(),
-      timer: timeCount,
-      results: results
-    };
-    return email('Page speed scores saved', data);
+    // var timeCount = (new Date().getTime() - timerStart)/1000;
+
+    // var data = {
+    //   timestamp: moment().format(),
+    //   timer: timeCount,
+    //   results: results
+    // };
+    // return email('Page speed scores saved', data);
 
   }).catch(function (err) {
 
@@ -80,3 +87,7 @@ var job = new cronJob({
   start: true,
   timeZone: 'America/New_York'
 });
+
+console.log('db conn: ' + process.env['DATABASE_URL']);
+
+getScores();

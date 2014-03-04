@@ -54,8 +54,6 @@ var getScores = function () {
 
   }).then(function (results) {
 
-    console.log(results);
-
     // results.forEach( function (result) {
     //   result.forEach( function(res) {
     //     save(res);
@@ -68,14 +66,14 @@ var getScores = function () {
 
   }).then(function (results) {
 
-    // var timeCount = (new Date().getTime() - timerStart)/1000;
+    var timeCount = (new Date().getTime() - timerStart)/1000;
 
-    // var data = {
-    //   timestamp: moment().format(),
-    //   timer: timeCount,
-    //   results: results
-    // };
-    // return email('Page speed scores saved', data);
+    var data = {
+      timestamp: moment().format(),
+      timer: timeCount,
+      results: results
+    };
+    return email('Page speed scores saved', data);
 
   }).catch(function (err) {
 

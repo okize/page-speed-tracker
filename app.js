@@ -88,4 +88,6 @@ var job = new cronJob({
   timeZone: 'America/New_York'
 });
 
-getScores();
+console.log(process.env['PAGESPEED_API_KEY']);
+
+// getScores();

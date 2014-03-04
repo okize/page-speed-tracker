@@ -38,6 +38,9 @@ var getScores = function () {
     return Promise.all(
       strategies.map(function (strategy) {
         return getScore(url, strategy).spread(function (res, body) {
+          if (JSON.parse(body).error) {
+            console.log('error');
+          }
           console.log(body);
           var score = {url: url};
           score[strategy + 'Score'] = JSON.parse(body).score;

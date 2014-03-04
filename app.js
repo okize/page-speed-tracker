@@ -88,6 +88,4 @@ var job = new cronJob({
   timeZone: 'America/New_York'
 });
 
-console.log('db conn: ' + process.env['DATABASE_URL']);
-
 getScores();

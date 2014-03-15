@@ -1,6 +1,3 @@
-// for timing results
-var timerStart = new Date().getTime();
-
 // modules
 var Promise = require('bluebird');
 var path = require('path');
@@ -24,11 +21,17 @@ var email = require(path.join(__dirname, 'lib', 'sendEmail.js'));
 // save the results to a json file locally
 var save = require(path.join(__dirname, 'lib', 'saveResults.js'));
 
+// save the results to a json file locally
+// var saveResultsToDisk = require(path.join(__dirname, 'lib', 'saveResultsToDisk.js'));
+
 // scoring strategies for page speed insights
 var strategies = ['mobile', 'desktop'];
 
 // get all the pagespeed scores, save them & email them
 var getScores = function () {
+
+  // for timing results
+  var timerStart = new Date().getTime();
 
   getUrls().map(function (url) {
 
@@ -56,6 +59,8 @@ var getScores = function () {
         save(res);
       });
     });
+
+    // saveResultsToDisk(results);
 
     return results;
 

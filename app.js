@@ -7,7 +7,7 @@ var cronJob = require('cron').CronJob;
 var time = require('time'); //required by cron
 
 //  time to run app in cron format
-var timeToRun = '0 14 * * *';
+var timeToRun = '0 8 * * *';
 
 // query db for list of urls to retreive page speed scores for
 var getUrls = require(path.join(__dirname, 'lib', 'getUrls.js'));

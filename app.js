@@ -1,3 +1,6 @@
+// for timing results
+var timerStart = new Date().getTime();
+
 // modules
 var Promise = require('bluebird');
 var path = require('path');
@@ -21,59 +24,75 @@ var email = require(path.join(__dirname, 'lib', 'sendEmail.js'));
 // save the results to a json file locally
 var save = require(path.join(__dirname, 'lib', 'saveResults.js'));
 
-// save the results to a json file locally
-// var saveResultsToDisk = require(path.join(__dirname, 'lib', 'saveResultsToDisk.js'));
-
 // scoring strategies for page speed insights
 var strategies = ['mobile', 'desktop'];
 
 // get all the pagespeed scores, save them & email them
 var getScores = function () {
 
-  // for timing results
-  var timerStart = new Date().getTime();
+  console.log('getting scores...');
 
   getUrls().map(function (url) {
 
-    var data = {};
-    var score = 0;
-
     return Promise.all(
+
       strategies.map(function (strategy) {
+
         return getScore(url, strategy).spread(function (res, body) {
-          data = JSON.parse(body);
+          var data = JSON.parse(body);
           if (data.error) {
             throw new Error(data.error.message);
           }
-          score = {url: url};
-          score[strategy + 'Score'] = data.score;
-          return score;
+          return {
+            url: url,
+            strategy: strategy,
+            score: data.score
+          };
+
         });
+
       })
     );
 
   }).then(function (results) {
 
-    results.forEach( function (result) {
-      result.forEach( function(res) {
-        save(res);
+    // convert
+    var newArr = [];
+
+    results.forEach(function (arrs) {
+      arrs.forEach(function (arr) {
+        return newArr.push(arr);
       });
     });
 
-    // saveResultsToDisk(results);
-
-    return results;
+    return newArr;
 
   }).then(function (results) {
 
-    var timeCount = (new Date().getTime() - timerStart)/1000;
+    console.log('saving scores...');
 
-    var data = {
-      timestamp: moment().format(),
-      timer: timeCount,
-      results: results
-    };
-    return email('Page speed scores saved', data);
+    console.log(results);
+
+    // results.forEach( function (result) {
+    //   result.forEach( function(res) {
+    //     save(res);
+    //   });
+    // });
+
+    // return results;
+
+  }).then(function (results) {
+
+    console.log('emailing scores...');
+
+    // var timeCount = (new Date().getTime() - timerStart)/1000;
+
+    // var data = {
+    //   timestamp: moment().format(),
+    //   timer: timeCount,
+    //   results: results
+    // };
+    // return email('Page speed scores saved', data);
 
   }).catch(function (err) {
 
@@ -92,3 +111,5 @@ var job = new cronJob({
   start: true,
   timeZone: 'America/New_York'
 });
+
+getScores();

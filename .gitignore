@@ -6,6 +6,7 @@ dump/
 temp/
 
 # NPM build folders
+node_modules/gulp/node_modules/v8flags/
 node_modules/browser-sync/node_modules/socket.io/node_modules/engine.io/node_modules/ws/build/
 node_modules/browser-sync/node_modules/socket.io/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/ws/build/
 node_modules/email-templates/node_modules/juice/node_modules/jsdom/node_modules/contextify/build/

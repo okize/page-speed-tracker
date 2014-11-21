@@ -7,7 +7,7 @@ var cronJob = require('cron').CronJob;
 var time = require('time'); //required by cron
 
 //  time to run app in cron format
-var timeToRun = '0 8 * * *';
+var timeToRun = '45 7 * * *';
 
 // query db for list of urls to retreive page speed scores for
 var getUrls = require(path.join(__dirname, 'lib', 'getUrls.js'));
@@ -18,7 +18,7 @@ var getScore = require(path.join(__dirname, 'lib', 'getScore.js'));
 // for sending notification emails
 var email = require(path.join(__dirname, 'lib', 'sendEmail.js'));
 
-// save the results to a json file locally
+// save the results to db
 var save = require(path.join(__dirname, 'lib', 'saveResults.js'));
 
 // save the results to a json file locally
@@ -59,8 +59,6 @@ var getScores = function () {
         save(res);
       });
     });
-
-    // saveResultsToDisk(results);
 
     return results;
 

@@ -1,5 +1,11 @@
 .env
+npm-debug.log
 
 data/
 dump/
 temp/
+
+# NPM build folders
+node_modules/email-templates/node_modules/juice/node_modules/jsdom/node_modules/contextify/build/
+node_modules/pg/build/
+node_modules/time/build/

@@ -7,7 +7,7 @@ var cronJob = require('cron').CronJob;
 var time = require('time'); //required by cron
 
 //  time to run app in cron format
-var timeToRun = '45 7 * * *';
+var timeToRun = '15 9 * * *';
 
 // query db for list of urls to retreive page speed scores for
 var getUrls = require(path.join(__dirname, 'lib', 'getUrls.js'));
@@ -35,6 +35,8 @@ var getScores = function () {
 
   getUrls().map(function (url) {
 
+    console.log('getting URLs');
+
     var data = {};
     var score = 0;
 
@@ -54,6 +56,8 @@ var getScores = function () {
 
   }).then(function (results) {
 
+    console.log('saving results');
+
     results.forEach( function (result) {
       result.forEach( function(res) {
         save(res);
@@ -63,6 +67,8 @@ var getScores = function () {
     return results;
 
   }).then(function (results) {
+
+    console.log('sending email');
 
     var timeCount = (new Date().getTime() - timerStart)/1000;
 

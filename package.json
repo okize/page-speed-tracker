@@ -10,6 +10,7 @@
     "dbal": "^0.2.4",
     "ejs": "^1.0.0",
     "email-templates": "^1.1.2",
+    "lodash": "^2.4.1",
     "moment": "^2.8.4",
     "nodemailer": "^0.7.0",
     "request": "^2.48.0",

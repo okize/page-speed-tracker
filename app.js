@@ -1,11 +1,12 @@
-var express = require('express');
 var path = require('path');
+var debug = require('debug')('temp');
+var express = require('express');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var routes = require('./routes/index');
-var debug = require('debug')('temp');
+var models = require('./models');
 
 var app = express();
 
@@ -58,8 +59,10 @@ if (app.get('env') === 'development') {
 app.set('port', process.env.PORT || 3000);
 app.set('name', 'Page Speed Tracker');
 
-var server = app.listen(app.get('port'), function() {
-  console.log(app.get('name') + ' server listening on port ' + server.address().port);
+models.sequelize.sync().success(function () {
+  var server = app.listen(app.get('port'), function() {
+    debug(app.get('name') + ' server listening on port ' + server.address().port);
+  });
 });
 
 module.exports = app;

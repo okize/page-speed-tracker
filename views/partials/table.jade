@@ -1,0 +1,16 @@
+table.table.table-hover.table-mc-blue.table-striped
+  thead
+    tr
+      th ID
+      th Url
+      th Strategy
+      th Score
+      th Date
+  tbody
+    each score in scores
+      tr
+        td= score.id
+        td= score.url
+        td= score.strategy
+        td= score.score
+        td= score.createdAt

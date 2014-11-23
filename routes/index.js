@@ -7,9 +7,9 @@ var models = require('../models');
 router.get('/', function(req, res) {
   models.Score
     .findAll({
-      where: {
-        url:'http://www.patientslikeme.com/'
-      },
+      // where: {
+      //   url:'http://www.patientslikeme.com/'
+      // },
       order: [
         ['id', 'DESC']
       ]

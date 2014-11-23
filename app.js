@@ -59,10 +59,16 @@ if (app.get('env') === 'development') {
 app.set('port', process.env.PORT || 3000);
 app.set('name', 'Page Speed Tracker');
 
-models.sequelize.sync().success(function () {
-  var server = app.listen(app.get('port'), function() {
-    debug(app.get('name') + ' server listening on port ' + server.address().port);
+models
+  .sequelize
+  .sync()
+  .then(function () {
+    var server = app.listen(app.get('port'), function() {
+      debug(app.get('name') + ' server listening on port ' + server.address().port);
+    });
+  })
+  .catch(function(error) {
+    console.error('Database error: ' + error)
   });
-});
 
 module.exports = app;

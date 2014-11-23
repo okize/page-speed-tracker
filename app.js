@@ -2,27 +2,25 @@
 var Promise = require('bluebird');
 var path = require('path');
 var fs = require('fs');
-var moment = require('moment');
 var cronJob = require('cron').CronJob;
 var time = require('time'); //required by cron
+var moment = require('moment');
+var models = require('./models');
 
-//  time to run app in cron format
-var timeToRun = '30 9 * * *';
+// the time to run app in cron format
+var timeToRun = '30 8 * * *';
 
 // query db for list of urls to retreive page speed scores for
 var getUrls = require(path.join(__dirname, 'lib', 'getUrls.js'));
 
-// for requesting page speed scores
+// requests page speed scores
 var getScore = require(path.join(__dirname, 'lib', 'getScore.js'));
-
-// for sending notification emails
-var email = require(path.join(__dirname, 'lib', 'sendEmail.js'));
 
 // save the results to db
 var save = require(path.join(__dirname, 'lib', 'saveResults.js'));
 
-// save the results to a json file locally
-// var saveResultsToDisk = require(path.join(__dirname, 'lib', 'saveResultsToDisk.js'));
+// send notification emails
+var email = require(path.join(__dirname, 'lib', 'sendEmail.js'));
 
 // scoring strategies for page speed insights
 var strategies = ['mobile', 'desktop'];
@@ -58,11 +56,7 @@ var getScores = function () {
 
     console.log('saving score results...');
 
-    results.forEach( function (result) {
-      result.forEach( function(res) {
-        save(res);
-      });
-    });
+    save(results);
 
     return results;
 
@@ -80,13 +74,13 @@ var getScores = function () {
 
     return email('Page speed scores saved', data);
 
-  }).finally(function (err) {
+  }).finally(function () {
 
     console.log('Finished!');
 
-  }).catch(function (err) {
+  }).catch(function (error) {
 
-    console.error('Error thrown: ' + err);
+    console.error('Error thrown: ' + error);
 
   });
 
@@ -98,6 +92,18 @@ var job = new cronJob({
   onTick: function () {
     return getScores();
   },
-  start: true,
+  start: false,
   timeZone: 'America/New_York'
 });
+
+// sync up models before starting app
+models
+  .sequelize
+  .sync()
+  .then(function () {
+    console.log('starting getScores cron job...')
+    job.start();
+  })
+  .catch(function(error) {
+    console.error('Database error: ' + error)
+  });

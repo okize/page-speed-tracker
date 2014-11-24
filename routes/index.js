@@ -5,6 +5,12 @@ var _ = require('lodash');
 var models = require('../models');
 
 router.get('/', function(req, res) {
+  res.render('index', {
+    title: 'Page Speed Tracker'
+  });
+});
+
+router.get('/data', function(req, res) {
   models.Score
     .findAll({
       // where: {
@@ -15,8 +21,8 @@ router.get('/', function(req, res) {
       ]
     })
     .then(function(scores) {
-      res.render('index', {
-        title: 'Page Speed Tracker',
+      res.render('data', {
+        title: 'Page Speed Tracker Datatable',
         scores: scores
       });
     });

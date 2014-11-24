@@ -101,7 +101,7 @@ models
   .sequelize
   .sync()
   .then(function () {
-    console.log('starting getScores cron job...')
+    console.log('starting cron job to get scores...');
     job.start();
   })
   .catch(function(error) {

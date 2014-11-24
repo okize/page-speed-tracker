@@ -60,7 +60,7 @@ if (app.get('env') === 'development') {
   });
 }
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env['PORT'] || 3000);
 app.set('name', 'Page Speed Tracker');
 
 models

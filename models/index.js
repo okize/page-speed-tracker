@@ -1,7 +1,22 @@
 var fs = require('fs');
 var path  = require('path');
+var pg = require('pg-native');
 var Sequelize = require('sequelize');
-var sequelize = new Sequelize(process.env['DATABASE_URL'], {dialect: 'postgres'});
+var parse = require('pg-connection-string').parse;
+
+// convert postgres connection string into object
+var conn = parse(process.env['DATABASE_URL']);
+
+// init sequlize connection
+var sequelize = new Sequelize(conn.database, conn.user, conn.password, {
+  dialect: 'postgres',
+  protocol: 'postgres',
+  port: conn.port,
+  host: conn.host,
+  native: true,
+  logging: console.log
+});
+
 var db = {};
 
 fs

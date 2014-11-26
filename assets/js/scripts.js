@@ -1,3 +1,5 @@
+//= require jquery.min.js
+
 // get chart data
 $.ajax({
   type: 'GET',

@@ -4,6 +4,20 @@ var _ = require('lodash');
 var models = require('../models');
 
 router
+  .route('/url')
+  .get(function (req, res) {
+    models.Url
+      .findAll()
+      .then(function(urls) {
+        res
+          .status(200)
+          .json({
+            urls: _.pluck(urls, 'url')
+          });
+      });
+  });
+
+router
   .route('/score')
   .get(function (req, res) {
     models.Score

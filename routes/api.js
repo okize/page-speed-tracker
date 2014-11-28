@@ -34,9 +34,20 @@ router
             ]
           })
           .then(function(scores) {
-            var data = [];
-            data.push(_.where(scores, {strategy: 'desktop'}));
-            data.push(_.where(scores, {strategy: 'mobile'}));
+            var data = [[],[]];
+            var dat = {};
+            _.map(scores, function(obj) {
+              dat = {
+                date: moment(obj.createdAt).format('YYYY-MM-DD'),
+                score: obj.score,
+                strategy: obj.strategy
+              };
+              if (obj.strategy === 'desktop') {
+                data[0].push(dat);
+              } else {
+                data[1].push(dat);
+              }
+            });
             res
               .status(200)
               .json({

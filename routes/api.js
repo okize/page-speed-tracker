@@ -11,9 +11,7 @@ router
       .then(function(urls) {
         res
           .status(200)
-          .json({
-            urls: _.pluck(urls, 'url')
-          });
+          .json(urls);
       });
   });
 

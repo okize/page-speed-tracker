@@ -4,7 +4,7 @@ var models = require('../models');
 
 router.get('/', function(req, res) {
   res.render('index', {
-    title: 'Page Speed Tracker'
+    title: 'Page Speed scores over time'
   });
 });
 

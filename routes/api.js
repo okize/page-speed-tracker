@@ -34,12 +34,15 @@ router
             ]
           })
           .then(function(scores) {
+            var data = [];
+            data.push(_.where(scores, {strategy: 'desktop'}));
+            data.push(_.where(scores, {strategy: 'mobile'}));
             res
               .status(200)
               .json({
                 urlId: req.params.urlId,
                 url: url,
-                scores: scores
+                scores: data
               });
           });
       })

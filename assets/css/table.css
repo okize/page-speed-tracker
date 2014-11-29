@@ -1,3 +1,13 @@
+.exportToExcel {
+  top: 0;
+  width: 200px;
+  left: calc(50% - 100px);
+  border-radius: 0 0 20px 20px;
+  padding: 5px;
+  background: rgba(0, 0, 0, .1);
+  position: fixed;
+}
+
 .table {
   width: 100%;
   max-width: 100%;

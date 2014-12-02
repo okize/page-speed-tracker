@@ -1,5 +1,4 @@
 var path = require('path');
-var debug = require('debug')('temp');
 var express = require('express');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -64,7 +63,7 @@ if (app.get('env') === 'development') {
   });
 }
 
-app.set('port', process.env['PORT'] || 3000);
+app.set('port', process.env['PORT'] || 8000);
 app.set('name', 'Page Speed Tracker');
 
 models
@@ -72,7 +71,7 @@ models
   .sync()
   .then(function () {
     var server = app.listen(app.get('port'), function() {
-      debug(app.get('name') + ' server listening on port ' + server.address().port);
+      console.log(app.get('name') + ' server listening on port ' + server.address().port);
     });
   })
   .catch(function(error) {

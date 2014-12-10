@@ -16,13 +16,13 @@ function initCharts (urlIds) {
         scores[i] = convert_dates(scores[i], 'date');
       }
 
-      var release_markers = [
-        {'date': new Date('2014-04-08'), 'label': '???'},
-        {'date': new Date('2014-06-21'), 'label': '???'},
-        {'date': new Date('2014-07-01'), 'label': '???'},
-        {'date': new Date('2014-07-09'), 'label': '???'},
-        {'date': new Date('2014-10-01'), 'label': '???'},
-        {'date': new Date('2014-10-21'), 'label': '???'}
+      var event_markers = [
+        {'date': new Date('2014-04-08'), 'label': 'April 8'},
+        {'date': new Date('2014-06-21'), 'label': 'June 21'},
+        {'date': new Date('2014-07-01'), 'label': 'July 1'},
+        {'date': new Date('2014-07-09'), 'label': 'July 9'},
+        {'date': new Date('2014-10-01'), 'label': 'October 1'},
+        {'date': new Date('2014-10-21'), 'label': 'October 21'}
       ];
 
       // add a wide multi-line chart
@@ -32,7 +32,7 @@ function initCharts (urlIds) {
         y_accessor: 'score',
         target: '#chart_' + obj.id,
         chart_type: 'line',
-        markers: release_markers,
+        markers: event_markers,
         animate_on_load: false,
         area: false,
         // custom_line_color_map: [1,4],

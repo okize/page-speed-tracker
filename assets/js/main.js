@@ -22,7 +22,9 @@ function initCharts (urlIds) {
         {'date': new Date('2014-07-01'), 'label': 'July 1'},
         {'date': new Date('2014-07-09'), 'label': 'July 9'},
         {'date': new Date('2014-10-01'), 'label': 'October 1'},
-        {'date': new Date('2014-10-21'), 'label': 'October 21'}
+        {'date': new Date('2014-10-21'), 'label': 'October 21'},
+        {'date': new Date('2014-12-01'), 'label': 'December 1'},
+        {'date': new Date('2014-12-28'), 'label': 'December 28'}
       ];
 
       // add a wide multi-line chart

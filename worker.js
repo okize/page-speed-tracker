@@ -8,7 +8,7 @@ var moment = require('moment');
 var models = require('./models');
 
 // the time to run app in cron format
-var timeToRun = '0 6 * * *';
+var timeToRun = '0 15 * * *';
 
 // query db for list of urls to retreive page speed scores for
 var getUrls = require(path.join(__dirname, 'lib', 'getUrls.js'));

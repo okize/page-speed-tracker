@@ -1,16 +1,7 @@
 .env
+node_modules/
 *.log
 
 data/
 dump/
 temp/
-
-# NPM build folders
-node_modules/gulp/node_modules/v8flags/
-node_modules/browser-sync/node_modules/socket.io/node_modules/engine.io/node_modules/ws/build/
-node_modules/browser-sync/node_modules/socket.io/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/ws/build/
-node_modules/email-templates/node_modules/juice/node_modules/jsdom/node_modules/contextify/build/
-node_modules/email-templates/node_modules/juice2/node_modules/jsdom/node_modules/contextify/build/
-node_modules/pg-native/node_modules/libpq/build/
-node_modules/pg/build/
-node_modules/time/build/

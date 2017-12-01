@@ -14,9 +14,9 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 
-// make moment available in jade templates
+// make moment available in pug templates
 app.locals.moment = moment
 
 app.use(logger('dev'));

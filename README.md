@@ -4,4 +4,4 @@
 
 ---
 
-**This project is no longer being developed.** It has been deprecated in favor of [Snapdash](https://github.com/okize/snapdash).
+**This project is no longer being developed.**

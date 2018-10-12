@@ -4,4 +4,4 @@
 
 ---
 
-**This project is no longer being developed.**
+**This project is no longer being maintained.**
